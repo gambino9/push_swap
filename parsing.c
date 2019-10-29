@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/28 19:28:02 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/29 12:47:06 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 {
 	// if (!(*cmd))
 	// 	return ;
+	if (!*list)
+		printf("!list a\n");
 	if (!(ft_strcmp(cmd, "sa")))
 		sa(list);
 	else if (!(ft_strcmp(cmd, "sb")))
@@ -126,6 +128,12 @@ void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 		rrb(list);
 	else if (!(ft_strcmp(cmd, "rrr")))
 		rrr(list, list_b);
+	t_stack *tmp = *list_b;
+	while (tmp != NULL)
+	{
+		printf("=======%d\n", (tmp)->value);
+		tmp = (tmp)->next;
+	}
 }
 
 void	parse_arg(t_stack **list, char *str)
@@ -153,22 +161,24 @@ int		main(int argc, char *argv[])
 	t_stack		*tmp;
 
 	list = create_list();
-	tmp = list;
 	i = argc;
 	a = argc - 1;
+	if (argc <= 1)
+		return (0);
 	while (i != 1)
 	{
-		parse_arg(&tmp, argv[a]);
+		parse_arg(&list, argv[a]);
 		a--;
 		i--;
 	}
-	if (!(without_duplicate(tmp)))
+	if (!(without_duplicate(list)))
 	{
 		printf("doublons presents\n");
 		// rajouter fonction suppresion + free liste
 		ft_error();
 	}
-	// printf("pas de probleme\n");
+	printf("pas de probleme\n");
+	tmp = list;
 	while (tmp != NULL)
 	{
 		printf("---- %d\n", (tmp)->value);
@@ -189,7 +199,8 @@ int		main(int argc, char *argv[])
 		printf("++++%d\n", (tmp)->value);
 		tmp = (tmp)->next;
 	}
-	if (list_b == NULL && ft_is_stack_sorted(&tmp))
+	tmp = list;
+	if (list_b == NULL && ft_is_stack_sorted(&tmp) == 1)
 		ft_putendl("OK\n");
 	else
 		ft_putendl("KO\n");
