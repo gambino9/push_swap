@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/29 12:47:06 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/30 18:08:29 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ long int		ft_atoilong(const char *nptr)
 
 void	ft_error(void)
 {
-	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("Error\n", 2);
 	exit(0);
 	// TODO rajouter ft_error erreur malloc
 }
@@ -88,7 +88,7 @@ int		without_duplicate(t_stack *list)
 	return (1);
 }
 
-int     check_op(char *buf)
+int     check_cmd(char *buf)
 {
     if (!ft_strcmp(buf, "sa") || !ft_strcmp(buf, "sb") || !ft_strcmp(buf, "ss")
         || !ft_strcmp(buf, "pa") || !ft_strcmp(buf, "pb")
@@ -102,10 +102,6 @@ int     check_op(char *buf)
 
 void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 {
-	// if (!(*cmd))
-	// 	return ;
-	if (!*list)
-		printf("!list a\n");
 	if (!(ft_strcmp(cmd, "sa")))
 		sa(list);
 	else if (!(ft_strcmp(cmd, "sb")))
@@ -128,12 +124,6 @@ void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 		rrb(list);
 	else if (!(ft_strcmp(cmd, "rrr")))
 		rrr(list, list_b);
-	t_stack *tmp = *list_b;
-	while (tmp != NULL)
-	{
-		printf("=======%d\n", (tmp)->value);
-		tmp = (tmp)->next;
-	}
 }
 
 void	parse_arg(t_stack **list, char *str)
@@ -152,13 +142,41 @@ void	parse_arg(t_stack **list, char *str)
 		push_list(list, ft_atoi(str));
 }
 
+void	parse_cmd(t_stack **a, t_stack **b)
+{
+	char	*line;
+	t_stack		*tmp_a;
+	t_stack		*tmp_b;
+
+	line = NULL;
+	while (get_next_line(0, &line) > 0)
+	{
+		if (!(check_cmd(line)))
+			ft_error();
+		exec_cmd(a, b, line);
+		tmp_a = *a;
+		tmp_b = *b;
+		while (tmp_a != NULL)
+		{
+			printf("----%d\n", tmp_a->value);
+			tmp_a = tmp_a->next;
+		}
+		printf("-------------------\n");
+		while (tmp_b != NULL)
+		{
+			printf("****%d\n", tmp_b->value);
+			tmp_b = tmp_b->next;
+		}
+	}
+}
+
 int		main(int argc, char *argv[])
 {
 	t_stack		*list;
 	int			i;
 	int			a;
-	char		*line;
 	t_stack		*tmp;
+	t_stack		*tmp_b;
 
 	list = create_list();
 	i = argc;
@@ -174,10 +192,9 @@ int		main(int argc, char *argv[])
 	if (!(without_duplicate(list)))
 	{
 		printf("doublons presents\n");
-		// rajouter fonction suppresion + free liste
+		delete_list(&list);
 		ft_error();
 	}
-	printf("pas de probleme\n");
 	tmp = list;
 	while (tmp != NULL)
 	{
@@ -186,20 +203,13 @@ int		main(int argc, char *argv[])
 	}
 	t_stack *list_b;
 
-	tmp = list;
 	list_b = create_list();
-	while (get_next_line(0, &line) > 0)
-	{
-		if (! (check_op(line)))
-			ft_error();
-		exec_cmd(&tmp, &list_b, line);
-	}
-	while (tmp != NULL)
-	{
-		printf("++++%d\n", (tmp)->value);
-		tmp = (tmp)->next;
-	}
 	tmp = list;
+	// line = NULL;
+	parse_cmd(&tmp, &list_b);
+	tmp_b = list_b;
+	tmp = list;
+	list_b = tmp_b;
 	if (list_b == NULL && ft_is_stack_sorted(&tmp) == 1)
 		ft_putendl("OK\n");
 	else

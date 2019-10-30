@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/28 18:33:55 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:59:32 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ void	dll_delete_node(t_stack **list, t_stack *del)
 		del->prev->next = del->next;
 	free (del);
 	return ;
+}
+
+void	delete_list(t_stack	**list)
+{
+	t_stack		*current;
+	t_stack		*next;
+
+	current = *list;
+	while(current != NULL)
+	{
+		// printf("lalala\n");
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*list = NULL;
 }
 
 int     get_list_length(t_stack *list)

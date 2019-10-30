@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/28 18:28:06 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:33:35 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			get_list_lenght(t_stack *list);
 int			ft_is_stack_sorted(t_stack  **a);
 t_stack		*create_list();
 t_stack		*create_node(int data);
+void		delete_list(t_stack	**list);
 
 /*
 **		Operators
@@ -63,8 +64,9 @@ void		ft_error(void);
 int			is_number(char *str);
 int			without_duplicate(t_stack *list);
 int			check_min_max(long int n);
-int     	check_op(char *buf);
+int     	check_cmd(char *buf);
 void		exec_cmd(t_stack **list, t_stack **list_b, char *cmd);
 void		parse_arg(t_stack **list, char *str);
+void		parse_cmd(t_stack **a, t_stack **b);
 
 #endif
