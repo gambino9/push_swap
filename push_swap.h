@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/30 17:33:35 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:32:26 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		rrr(t_stack **a, t_stack **b);
 
 long int 	ft_atoilong(const char *nptr);
 void		ft_error(void);
+void		ft_malloc_error(void);
 int			is_number(char *str);
 int			without_duplicate(t_stack *list);
 int			check_min_max(long int n);

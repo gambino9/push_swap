@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:56:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/23 18:59:19 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/31 16:19:37 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ra(t_stack **a)
 	t_stack		*tmp;
 	t_stack		*tmp_a;
 
-	if (*a)
+	if (*a && (*a)->next)
 	{
 		tmp = (*a);
 		tmp_a = (*a);
@@ -41,7 +41,7 @@ void	rb(t_stack **b)
 	t_stack		*tmp;
 	t_stack		*tmp_b;
 
-	if (*b)
+	if (*b && (*b)->next)
 	{
 		tmp = (*b);
 		tmp_b = (*b);

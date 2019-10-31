@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/30 17:59:32 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/31 16:10:55 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,17 @@ int		ft_is_stack_sorted(t_stack  **a)
 	t_stack		*list;
 
 	list = (*a);
+	if (list)
+	{
+		printf("lala %d\n",list->value);
+		if(list->next)
+			printf("culcul%d\n",list->next->value);
+
+
+	}
 	while (list && list->next)
 	{
+		// printf("sort- \n");
 		if (list->value > list->next->value)
 			return (0);
 		list = list->next;
@@ -50,10 +59,11 @@ void	delete_list(t_stack	**list)
 	t_stack		*current;
 	t_stack		*next;
 
+	if (*list == NULL)
+		return ;
 	current = *list;
 	while(current != NULL)
 	{
-		// printf("lalala\n");
 		next = current->next;
 		free(current);
 		current = next;
@@ -141,7 +151,7 @@ t_stack	*create_node(int data)
 	t_stack		*list;
 
 	if (!(list = (t_stack *)ft_memalloc(sizeof(t_stack))))
-		return NULL;
+		ft_malloc_error();
 	list->value = data;
 	list->prev = NULL;
 	list->next = NULL;
@@ -153,7 +163,7 @@ t_stack	*create_list()
 	t_stack	*list;
 	
 	if (!(list = (t_stack *)ft_memalloc(sizeof(t_stack))))
-		ft_error();
+		ft_malloc_error();
 	list = NULL; 
 	return (list);
 }
