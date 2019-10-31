@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/31 16:10:55 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/10/31 19:04:50 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int		ft_is_stack_sorted(t_stack  **a)
 		printf("lala %d\n",list->value);
 		if(list->next)
 			printf("culcul%d\n",list->next->value);
-
-
 	}
 	while (list && list->next)
 	{

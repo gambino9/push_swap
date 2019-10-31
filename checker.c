@@ -5,30 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/27 17:19:00 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/30 21:32:12 by lboukrou         ###   ########.fr       */
+/*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
+/*   Updated: 2019/10/31 19:00:18 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+#include <limits.h>
 
-void	ft_error(void)
+int		main(int argc, char *argv[])
 {
-	ft_putendl_fd("Error", 2);
-	exit(0);
-}
+	int			i;
+	t_stack		*list;
+	t_stack		*tmp;
+	t_stack		*list_b;
 
-int		main()
-{
-    char		*line;
-
-	while (get_next_line(0, &line) > 0)
+	i = argc;
+	list = create_list();
+	if (argc <= 1)
+		return (0);
+	while (--i != 0)
+		parse_arg(&list, argv[i]);
+	tmp = list;
+	if (!(without_duplicate(list)))
 	{
-		if (! (check_op(line)))
-			ft_error();
-		else
-			printf("%s\n", line);
+		delete_list(&list);
+		ft_error();
 	}
+	list_b = create_list();
+	parse_cmd(&tmp, &list_b);
+	list = tmp;
+	if (list_b == NULL && ft_is_stack_sorted(&tmp) == 1)
+		ft_putendl("OK\n");
+	else
+		ft_putendl("KO\n");
+	delete_list(&list_b);
+	delete_list(&list);
 	return (0);
 }

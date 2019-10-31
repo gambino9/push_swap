@@ -1,0 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_checker.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
+/*   Updated: 2019/10/31 18:57:52 by lboukrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+#include <stdio.h>
+#include <limits.h>
+
+long int		ft_atoilong(const char *nptr)
+{
+	size_t				i;
+	long long	retour;
+	int					negatif;
+
+	i = 0;
+	negatif = 1;
+	retour = 0;
+	while ((nptr[i] == ' ') || (nptr[i] == '\n') || (nptr[i] == '\r') ||
+			(nptr[i] == '\f') || (nptr[i] == '\v') || (nptr[i] == '\t'))
+		i++;
+	if (nptr[i] == '-')
+		negatif = -1;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		i++;
+	while (nptr[i] && nptr[i] <= '9' && nptr[i] >= '0')
+	{
+		retour *= 10;
+		retour += nptr[i] - '0';
+		i++;
+		if (retour > 9223372036854775807)
+			return (negatif == -1 ? 0 : -1);
+	}
+	return (retour * negatif);
+}
+
+int		check_min_max(long int n)
+{
+	if (n > INT_MAX || n < INT_MIN)
+		return (0);
+	else
+		return (1);
+}
+
+int		is_number(char *str)
+{
+	while (*str)
+	{
+		if (!(ft_isdigit(*str)))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int		without_duplicate(t_stack *list)
+{
+    t_stack *tmp;
+	t_stack *tmp2;
+
+	tmp = list;
+	while (tmp != NULL && tmp->next != NULL)
+	{
+		tmp2 = tmp;
+		while (tmp2->next != NULL)
+		{
+			if (tmp->value == tmp2->next->value)
+				return (0);
+			else
+				tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void	parse_arg(t_stack **list, char *str)
+{
+	if (!is_number((str)))
+	{
+		printf("caractere non int\n");
+		delete_list(list);
+		ft_error();
+	}
+	if (check_min_max(ft_atoilong(str)) == 0)
+	{
+		printf("over/underflow\n");
+		delete_list(list);
+		ft_error();
+	}
+	else
+		push_list(list, ft_atoi(str));
+}

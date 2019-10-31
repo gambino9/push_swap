@@ -1,85 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_cmds.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/31 16:46:37 by lboukrou         ###   ########.fr       */
+/*   Created: 2019/10/31 18:58:49 by lboukrou          #+#    #+#             */
+/*   Updated: 2019/10/31 19:00:20 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-#include <limits.h>
-
-long int		ft_atoilong(const char *nptr)
-{
-	size_t				i;
-	long long	retour;
-	int					negatif;
-
-	i = 0;
-	negatif = 1;
-	retour = 0;
-	while ((nptr[i] == ' ') || (nptr[i] == '\n') || (nptr[i] == '\r') ||
-			(nptr[i] == '\f') || (nptr[i] == '\v') || (nptr[i] == '\t'))
-		i++;
-	if (nptr[i] == '-')
-		negatif = -1;
-	if (nptr[i] == '-' || nptr[i] == '+')
-		i++;
-	while (nptr[i] && nptr[i] <= '9' && nptr[i] >= '0')
-	{
-		retour *= 10;
-		retour += nptr[i] - '0';
-		i++;
-		if (retour > 9223372036854775807)
-			return (negatif == -1 ? 0 : -1);
-	}
-	return (retour * negatif);
-}
-
-int		check_min_max(long int n)
-{
-	if (n > INT_MAX || n < INT_MIN)
-		return (0);
-	else
-		return (1);
-}
-
-int		is_number(char *str)
-{
-	while (*str)
-	{
-		if (!(ft_isdigit(*str)))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-int		without_duplicate(t_stack *list)
-{
-    t_stack *tmp;
-	t_stack *tmp2;
-
-	tmp = list;
-	while (tmp != NULL && tmp->next != NULL)
-	{
-		tmp2 = tmp;
-		while (tmp2->next != NULL)
-		{
-			if (tmp->value == tmp2->next->value)
-				return (0);
-			else
-				tmp2 = tmp2->next;
-		}
-		tmp = tmp->next;
-	}
-	return (1);
-}
 
 int     check_cmd(char *buf)
 {
@@ -119,24 +51,6 @@ void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 		rrr(list, list_b);
 }
 
-void	parse_arg(t_stack **list, char *str)
-{
-	if (!is_number((str)))
-	{
-		printf("caractere non int\n");
-		delete_list(list);
-		ft_error();
-	}
-	if (check_min_max(ft_atoilong(str)) == 0)
-	{
-		printf("over/underflow\n");
-		delete_list(list);
-		ft_error();
-	}
-	else
-		push_list(list, ft_atoi(str));
-}
-
 void	parse_cmd(t_stack **a, t_stack **b)
 {
 	char		*line;
@@ -167,35 +81,4 @@ void	parse_cmd(t_stack **a, t_stack **b)
 			tmp_b = tmp_b->next;
 		}
 	}
-}
-
-int		main(int argc, char *argv[])
-{
-	int			i;
-	t_stack		*list;
-	t_stack		*tmp;
-	t_stack		*list_b;
-
-	i = argc;
-	list = create_list();
-	if (argc <= 1)
-		return (0);
-	while (--i != 0)
-		parse_arg(&list, argv[i]);
-	tmp = list;
-	if (!(without_duplicate(list)))
-	{
-		delete_list(&list);
-		ft_error();
-	}
-	list_b = create_list();
-	parse_cmd(&tmp, &list_b);
-	list = tmp;
-	if (list_b == NULL && ft_is_stack_sorted(&tmp) == 1)
-		ft_putendl("OK\n");
-	else
-		ft_putendl("KO\n");
-	delete_list(&list_b);
-	delete_list(&list);
-	return (0);
 }
