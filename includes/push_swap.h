@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/30 19:32:26 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/01 22:18:07 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
-# include "./libft/libft.h"
+# include "libft.h"
 
 typedef struct			s_stack
 {
