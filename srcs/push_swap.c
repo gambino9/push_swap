@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:26:44 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/13 19:17:38 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/13 20:07:04 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int     main(int argc, char *argv[])
     tmp = list;
     size = get_list_length(list) + 1;
     //printf("lengthhhh ok\n");
-    while (tmp)
-    {
-        printf("before %d\n", tmp->value);
-        tmp = tmp->next;
-    }
+    // while (tmp)
+    // {
+    //     printf("before %d\n", tmp->value);
+    //     tmp = tmp->next;
+    // }
     // printf("print ok\n");
     
     // tmp = list;
@@ -49,11 +49,11 @@ int     main(int argc, char *argv[])
     quicksort_ascending(size, &list, &list_b);
     // list = tmp;
     // printf("sort ok\n");
-    while (list)
-    {
-        printf("after %d\n", list->value);
-        list = list->next;
-    }
+    // while (list)
+    // {
+    //     // printf("after %d\n", list->value);
+    //     list = list->next;
+    // }
     if (ft_is_stack_sorted(&list))
         printf("liste triee\n");
     else
