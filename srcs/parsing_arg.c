@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_checker.c                                  :+:      :+:    :+:   */
+/*   parsing_arg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/31 18:57:52 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:42:08 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,27 @@ int		without_duplicate(t_stack *list)
 
 void	parse_arg(t_stack **list, char *str)
 {
-	if (!is_number((str)))
+	char	**string;
+	int		i;
+	
+	i = 0;
+	string = ft_strsplit(str, ' ');
+	while (string[i] != NULL)
 	{
-		printf("caractere non int\n");
-		delete_list(list);
-		ft_error();
+		if (!is_number((string[i])))
+		{
+			printf("%s - caractere non int\n", string[i]);
+			delete_list(list);
+			ft_error();
+		}
+		if (check_min_max(ft_atoilong(string[i])) == 0)
+		{
+			printf("over/underflow\n");
+			delete_list(list);
+			ft_error();
+		}
+		else
+			push_list(list, ft_atoi(string[i]));
+		i++;
 	}
-	if (check_min_max(ft_atoilong(str)) == 0)
-	{
-		printf("over/underflow\n");
-		delete_list(list);
-		ft_error();
-	}
-	else
-		push_list(list, ft_atoi(str));
 }

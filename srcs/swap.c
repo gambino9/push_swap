@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:42:55 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/28 18:27:58 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/08 19:20:47 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void    sa(t_stack **a)
 
 	if ((*a) && (*a)->next)
 	{
-		tmp = (*a);
+        tmp = (*a);
         (*a) = (*a)->next;
 
         tmp->next = (*a)->next;
-        tmp->next->prev = tmp;
+        if (tmp->next != NULL)
+            tmp->next->prev = tmp;
 
         (*a)->prev = tmp->prev;
         (*a)->next = tmp;
@@ -40,7 +41,8 @@ void    sb(t_stack **b)
         (*b) = (*b)->next;
 
         tmp->next = (*b)->next;
-        tmp->next->prev = tmp;
+        if (tmp->next != NULL)
+            tmp->next->prev = tmp;
 
         (*b)->prev = tmp->prev;
         (*b)->next = tmp;

@@ -6,21 +6,21 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 22:05:27 by lboukrou          #+#    #+#              #
-#    Updated: 2019/11/01 22:17:28 by lboukrou         ###   ########.fr        #
+#    Updated: 2019/11/12 20:20:22 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        =    checker
-CC            =    gcc
-CFLAGS        =    -Werror -Wall -Wextra
-LIB_PATH    =    libft
-LIB            =    $(LIB_PATH)/libft.a
+NAME			=	checker
+CC				=	gcc
+CFLAGS			=	-Werror -Wall -Wextra
+LIB_PATH		=	libft
+LIB				=	$(LIB_PATH)/libft.a
 
-INC_DIR        =    includes
-INCS        =    -I $(INC_DIR) -I $(LIB_PATH)
+INC_DIR			=	includes
+INCS			=	-I $(INC_DIR) -I $(LIB_PATH)
 
-SRC_DIR        =    srcs
-SRC            =    checker.c \
+SRC_DIR			=	srcs
+SRC				=	checker.c \
 					error.c \
 					parsing_arg.c \
 					parsing_cmds.c \
@@ -28,12 +28,16 @@ SRC            =    checker.c \
 					reverse_rotate.c \
 					rotate.c \
 					swap.c \
-					utility.c
+					utility.c \
+					algo.c \
+					quicksort.c \
+					push_swap.c \
+					median.c
 
-OBJ_DIR        =    obj
+OBJ_DIR			=	obj
 
-SRCS        =    $(addprefix $(SRC_DIR)/, $(SRC))
-OBJS        =    $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+SRCS			=	$(addprefix $(SRC_DIR)/, $(SRC))
+OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 
 all: $(NAME)

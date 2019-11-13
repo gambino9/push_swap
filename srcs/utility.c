@@ -6,11 +6,11 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/31 19:04:50 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/11 19:15:02 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 #include <stdio.h>
 
 int		ft_is_stack_sorted(t_stack  **a)
@@ -18,16 +18,25 @@ int		ft_is_stack_sorted(t_stack  **a)
 	t_stack		*list;
 
 	list = (*a);
-	if (list)
-	{
-		printf("lala %d\n",list->value);
-		if(list->next)
-			printf("culcul%d\n",list->next->value);
-	}
+	
 	while (list && list->next)
 	{
-		// printf("sort- \n");
 		if (list->value > list->next->value)
+			return (0);
+		list = list->next;
+	}
+	return (1);
+}
+
+int		ft_is_stack_decreasing_sorted(t_stack  **b)
+{
+	t_stack		*list;
+
+	list = (*b);
+	
+	while (list && list->next)
+	{
+		if (list->value < list->next->value)
 			return (0);
 		list = list->next;
 	}
@@ -76,7 +85,7 @@ int     get_list_length(t_stack *list)
     
     i = 0;
 	tmp = list;
-    while(tmp->next)
+    while(tmp && tmp->next)
     {
 		tmp = tmp->next;
 		i++;
