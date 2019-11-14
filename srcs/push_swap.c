@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:26:44 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/13 20:07:04 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:38:57 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int     main(int argc, char *argv[])
 		return (0);
     while (argc-- != 1)
         parse_arg(&list, argv[argc]);
-    // printf("parse ok\n");
     if (!(without_duplicate(list)))
 	{
 		delete_list(&list);
@@ -54,9 +53,9 @@ int     main(int argc, char *argv[])
     //     // printf("after %d\n", list->value);
     //     list = list->next;
     // }
-    if (ft_is_stack_sorted(&list))
-        printf("liste triee\n");
-    else
-        printf("liste pas triee\n");
+    // if (ft_is_stack_sorted(&list))
+    //     // printf("liste triee\n");
+    // else
+    //     // printf("liste pas triee\n");
     return (0);
 }

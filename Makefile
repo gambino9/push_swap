@@ -6,11 +6,13 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 22:05:27 by lboukrou          #+#    #+#              #
-#    Updated: 2019/11/12 20:20:22 by lboukrou         ###   ########.fr        #
+#    Updated: 2019/11/14 16:24:10 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	checker
+NAME			=	both
+NAME_1			=	checker
+NAME_2			=	push_swap
 CC				=	gcc
 CFLAGS			=	-Werror -Wall -Wextra
 LIB_PATH		=	libft
@@ -20,30 +22,38 @@ INC_DIR			=	includes
 INCS			=	-I $(INC_DIR) -I $(LIB_PATH)
 
 SRC_DIR			=	srcs
-SRC				=	checker.c \
-					error.c \
+SRC_CHECKER		=	checker.c \
+					parsing_cmds.c 
+SRC_PUSH_SWAP	=	push_swap.c \
+					quicksort.c \
+					median.c
+SRC_BOTH		=	error.c \
 					parsing_arg.c \
-					parsing_cmds.c \
 					push.c \
 					reverse_rotate.c \
 					rotate.c \
 					swap.c \
-					utility.c \
-					algo.c \
-					quicksort.c \
-					push_swap.c \
-					median.c
+					utility.c
 
 OBJ_DIR			=	obj
 
-SRCS			=	$(addprefix $(SRC_DIR)/, $(SRC))
-OBJS			=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+SRCS_BOTH		=	$(addprefix $(SRC_DIR)/, $(SRC_BOTH))
+SRCS_CHECKER	=	$(addprefix $(SRC_DIR)/, $(SRC_CHECKER))
+SRCS_PUSH_SWAP	=	$(addprefix $(SRC_DIR)/, $(SRC_PUSH_SWAP))
 
+OBJS_BOTH		=	$(addprefix $(OBJ_DIR)/, $(SRC_BOTH:.c=.o))
+OBJS_CHECKER	=	$(addprefix $(OBJ_DIR)/, $(SRC_CHECKER:.c=.o))
+OBJS_PUSH_SWAP	=	$(addprefix $(OBJ_DIR)/, $(SRC_PUSH_SWAP:.c=.o))
 
 all: $(NAME)
 
-$(NAME): obj $(LIB) $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIB)
+$(NAME): $(NAME_1) $(NAME_2)
+
+$(NAME_1): obj $(LIB) $(OBJS_CHECKER) $(OBJS_BOTH)
+	$(CC) $(CFLAGS) -o $@ $(OBJS_CHECKER) $(OBJS_BOTH) $(LIB)
+
+$(NAME_2): obj $(LIB) $(OBJS_PUSH_SWAP) $(OBJS_BOTH)
+	$(CC) $(CFLAGS) -o $@ $(OBJS_PUSH_SWAP) $(OBJS_BOTH) $(LIB)
 
 obj:
 	mkdir obj
@@ -61,8 +71,9 @@ clean:
 
 fclean: clean
 	rm -f $(LIB)
-	rm -f $(NAME)
+	rm -f $(NAME_1)
+	rm -f $(NAME_2)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: both all clean fclean re

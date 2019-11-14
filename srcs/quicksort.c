@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:49:28 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/13 20:14:35 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:25:22 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 {
 	int			push_cnt;
-	t_stack		*last;
 	int			pivot;
 	// t_stack		*tmp;
 	int			rotate;
@@ -29,7 +28,6 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 	{
 		i = 0;
 		push_cnt = 0;
-		last = last_node(*list);
 		pivot = (ft_select_pivot(*list, size))->value;
 	    // printf("QS_a : pivot = %d\n", pivot);
 		while (i <= size)
@@ -86,7 +84,6 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 {
 	int		push_cnt;
-	t_stack	*last;
 	int 	pivot;
 	// t_stack	*tmp;
 	int		rotate;
@@ -101,7 +98,6 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 	{
 		i = 0;
 		push_cnt = 0;
-		last = last_node(*list);
 		pivot = (ft_select_pivot(*list, size))->value;
 	    // printf("QS_b : pivot = %d\n", pivot);
 		while (i <= size)
