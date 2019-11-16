@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/12 20:32:52 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/15 20:28:46 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void		quicksort_descending(int size, t_stack **list, t_stack **stock);
 t_stack		*last_node(t_stack *root);
 int			*ft_get_median(t_stack *list, const int size);
 t_stack 	*ft_select_pivot(t_stack *list, const int size);
+void		toute_petite_liste(t_stack **list);
+void		toute_petite_liste_b(t_stack **list);
 
 #endif

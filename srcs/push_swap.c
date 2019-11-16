@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:26:44 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/14 16:38:57 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/16 19:19:41 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ int     main(int argc, char *argv[])
     // tmp = list;
     tmp = list;
     quicksort_ascending(size, &list, &list_b);
-    // list = tmp;
-    // printf("sort ok\n");
+    // toute_petite_liste_b(&list);
+    // toute_petite_liste(&list);
+    // tmp = list;
     // while (list)
     // {
-    //     // printf("after %d\n", list->value);
+    //     printf("after %d\n", list->value);
     //     list = list->next;
-    // }
-    // if (ft_is_stack_sorted(&list))
-    //     // printf("liste triee\n");
+    // // }
+    // if (ft_is_stack_sorted(&tmp))
+    //     printf("liste triee\n");
     // else
-    //     // printf("liste pas triee\n");
+    //     printf("liste pas triee\n");
     return (0);
 }
