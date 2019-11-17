@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 22:05:27 by lboukrou          #+#    #+#              #
-#    Updated: 2019/11/14 16:24:10 by lboukrou         ###   ########.fr        #
+#    Updated: 2019/11/17 19:23:19 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,14 @@ INC_DIR			=	includes
 INCS			=	-I $(INC_DIR) -I $(LIB_PATH)
 
 SRC_DIR			=	srcs
-SRC_CHECKER		=	checker.c \
-					parsing_cmds.c 
+SRC_CHECKER		=	checker.c 
 SRC_PUSH_SWAP	=	push_swap.c \
 					quicksort.c \
-					median.c
+					median.c \
+					optimization.c
 SRC_BOTH		=	error.c \
 					parsing_arg.c \
+					parsing_cmds.c \
 					push.c \
 					reverse_rotate.c \
 					rotate.c \

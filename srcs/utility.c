@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/11 19:15:02 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:21:41 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,4 +173,25 @@ t_stack	*create_list()
 		ft_malloc_error();
 	list = NULL; 
 	return (list);
+}
+
+void	add_end_list(t_stack **list, int data)
+{
+	t_stack	*new_node;
+	t_stack	*tmp;
+
+	tmp = *list;
+	new_node = create_node(data);
+	if (*list == NULL)
+	{
+		new_node->prev = NULL;
+		*list = new_node;
+		return ;
+	}
+	while (tmp && tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new_node;
+	new_node->prev = tmp;
 }

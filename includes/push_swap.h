@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/15 20:28:46 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:25:42 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ typedef struct			s_stack
 	struct s_stack		*prev;
 }						t_stack;
 
+typedef enum			e_ope
+{
+	NO, SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR
+}						t_ope;
+
+static char				*g_tab_ope[12] = {"no", "sa", "sb", "ss", "pa",
+											"pb", "ra", "rb",
+											"rr", "rra", "rrb", "rrr"};
+
 /*
 **		Utility functions
 */
@@ -39,6 +48,7 @@ int			ft_is_stack_decreasing_sorted(t_stack  **b);
 t_stack		*create_list();
 t_stack		*create_node(int data);
 void		delete_list(t_stack	**list);
+void		add_end_list(t_stack **list, int data);
 
 /*
 **		Operators
@@ -75,14 +85,16 @@ void		parse_cmd(t_stack **a, t_stack **b);
 **		Sort functions
 */
 
-void		sort_tiny_list(t_stack **list);
-void		sort_tiny_list_b(t_stack **list);
-void		quicksort_ascending(int size, t_stack **list, t_stack **stock);
-void		quicksort_descending(int size, t_stack **list, t_stack **stock);
+void		sort_tiny_list(t_stack **list, t_stack **cmds);
+void		sort_tiny_list_b(t_stack **list, t_stack **cmds);
+void		quicksort_ascending(int size, t_stack **list, t_stack **stock, t_stack **cmds);
+void		quicksort_descending(int size, t_stack **list, t_stack **stock, t_stack **cmds);
 t_stack		*last_node(t_stack *root);
 int			*ft_get_median(t_stack *list, const int size);
 t_stack 	*ft_select_pivot(t_stack *list, const int size);
-void		toute_petite_liste(t_stack **list);
-void		toute_petite_liste_b(t_stack **list);
+void		toute_petite_liste(t_stack **list, t_stack **cmds);
+void		toute_petite_liste_b(t_stack **list, t_stack **cmds);
+void    	which_operation(t_stack **cmds, t_stack **list_a, t_stack **list_b, int ope);
+void		print_cmds(t_stack *cmds);
 
 #endif

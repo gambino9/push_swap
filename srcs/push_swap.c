@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:26:44 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/16 19:19:41 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:34:20 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int     main(int argc, char *argv[])
     t_stack		*list;
     t_stack		*list_b;
     t_stack		*tmp;
+    t_stack     *cmds;
     int         size;
 
     list = create_list();
@@ -45,15 +46,15 @@ int     main(int argc, char *argv[])
     
     // tmp = list;
     tmp = list;
-    quicksort_ascending(size, &list, &list_b);
-    // toute_petite_liste_b(&list);
-    // toute_petite_liste(&list);
+    cmds = create_list();
+    quicksort_ascending(size, &list, &list_b, &cmds);
+    print_cmds(cmds);
     // tmp = list;
-    // while (list)
+    // while (cmds)
     // {
-    //     printf("after %d\n", list->value);
-    //     list = list->next;
-    // // }
+    //     printf("after %d\n", cmds->value);
+    //     cmds = cmds->next;
+    // }
     // if (ft_is_stack_sorted(&tmp))
     //     printf("liste triee\n");
     // else

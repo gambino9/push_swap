@@ -6,14 +6,14 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:49:28 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/16 20:22:25 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:33:44 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
 
-void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
+void	quicksort_ascending(int size, t_stack **list, t_stack **stock, t_stack **cmds)
 {
 	int			push_cnt;
 	int			pivot;
@@ -25,8 +25,8 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 	if (size <= 3)
 	{
 		if (get_list_length(*list) < 3)
-			toute_petite_liste(list);
-		sort_tiny_list(list);
+			toute_petite_liste(list, cmds);
+		sort_tiny_list(list, cmds);
 	}
 	else
 	{
@@ -38,15 +38,16 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 		{
 			if ((*list)->value <= pivot)
 			{
-				pb(list, stock);
-				ft_putendl_fd("pb", 1);
+				which_operation(cmds, list, stock, PB);
+				// pb(list, stock);
+				// ft_putendl_fd("pb", 1);
 				push_cnt++;
 			}
 			else
 			{
-				ra(list);
-				// printf("++++++++++++++++++++++++++++++++a la raie\n");
-				ft_putendl_fd("ra", 1);
+				which_operation(cmds, list, stock, RA);				
+				// ra(list);
+				// ft_putendl_fd("ra", 1);
 				rotate++;
 			}
 			i++;
@@ -57,31 +58,30 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 		{
 			while (rotate--)
 			{
-				rra(list);
-				ft_putendl_fd("rra", 1);
+				which_operation(cmds, list, stock, RRA);				
+				// rra(list);
+				// ft_putendl_fd("rra", 1);
 			}
 		}
 	    // printf("QS_a : size = %d - push_cnt = %d\n", size, push_cnt);
-		quicksort_ascending(size - push_cnt, list, stock);
-		quicksort_descending(push_cnt, stock, list);
+		quicksort_ascending(size - push_cnt, list, stock, cmds);
+		quicksort_descending(push_cnt, stock, list, cmds);
 		// size = get_list_length(*stock);
 		while (push_cnt > 0)
 		{
 			if ((*list)->value > (*stock)->value)
 			{
 				// printf("QS_a pa %d > %d\n", (*list)->value , (*stock)->value);
-				// printf("je fais un pa\n");
-				pa(list, stock);
-				ft_putendl_fd("pa", 1);
+				which_operation(cmds, list, stock, PA);
+				// pa(list, stock);
+				// ft_putendl_fd("pa", 1);
 				push_cnt--;
 			}
 			else
 			{
-				// printf("es-tu la\n");
-				ra(list);
-				printf("ou ici ?\n");
-				ft_putendl_fd("ra", 1);
-				// printf("QS_a mon cul raclette\n");
+				which_operation(cmds, list, stock, RA);
+				// ra(list);
+				// ft_putendl_fd("ra", 1);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock)
 	// printf("\nQS_a END\n");
 }
 
-void	quicksort_descending(int size, t_stack **list, t_stack **stock)
+void	quicksort_descending(int size, t_stack **list, t_stack **stock, t_stack **cmds)
 {
 	int		push_cnt;
 	int 	pivot;
@@ -109,8 +109,8 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 	if (size <= 3)
 	{
 		if (get_list_length(*list) < 3)
-			toute_petite_liste_b(list);
-		sort_tiny_list_b(list);
+			toute_petite_liste_b(list, cmds);
+		sort_tiny_list_b(list, cmds);
 	}
 	else 
 	{
@@ -123,14 +123,16 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 			// printf("QS_b : value %d \n", (*list)->value);
 			if ((*list)->value > pivot)
 			{
-				pa(stock, list);
-				ft_putendl_fd("pa", 1);
+				which_operation(cmds, stock, list, PA);
+				// pa(stock, list);
+				// ft_putendl_fd("pa", 1);
 				push_cnt++;
 			}
 			else
 			{
-				rb(list);
-				ft_putendl_fd("rb", 1);
+				which_operation(cmds, stock, list, RB);				
+				// rb(list);
+				// ft_putendl_fd("rb", 1);
 				rotate++;
 			}
 			i++;
@@ -141,27 +143,30 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 		{
 			while (rotate--)
 			{
-				rrb(list);
-				ft_putendl_fd("rrb", 1);
+				which_operation(cmds, stock, list, RRB);
+				// rrb(list);
+				// ft_putendl_fd("rrb", 1);
 			}
 		}
 	    // printf("QS_b : size = %d - push_cnt = %d\n", size, push_cnt);
-		quicksort_descending(size - push_cnt, list, stock);
-		quicksort_ascending(push_cnt, stock, list);
+		quicksort_descending(size - push_cnt, list, stock, cmds);
+		quicksort_ascending(push_cnt, stock, list, cmds);
 		
 		while (push_cnt > 0)
 		{
 			if ((*list)->value < (*stock)->value)
 			{
 				// printf("QS_b pb %d < %d\n", (*list)->value , (*stock)->value);
-				pb(stock, list);
-				ft_putendl_fd("pb", 1);
+				which_operation(cmds, stock, list, PB);
+				// pb(stock, list);
+				// ft_putendl_fd("pb", 1);
 				push_cnt--;
 			}
 			else
 			{
-				rb(list);
-				ft_putendl_fd("rb", 1);
+				which_operation(cmds, stock, list, RB);
+				// rb(list);
+				// ft_putendl_fd("rb", 1);
 				// printf("QS_b mon cul choucroute\n");
 			} 
 		}
@@ -176,61 +181,71 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock)
 	// printf("\nQS_b END\n");
 }
 
-void	sort_tiny_list(t_stack **list)
+void	sort_tiny_list(t_stack **list, t_stack **cmds)
 {
 	if (!list || ft_is_stack_sorted(list))
 		return ;
 	if ((*list)->value > (*list)->next->value)
 		{
-			sa(list);
-			ft_putendl_fd("sa", 1);
+			which_operation(cmds, list, NULL, SA);
+			// sa(list);
+			// ft_putendl_fd("sa", 1);
 		}
 	if (!(*list)->next->next)
 		return ;
 	if ((*list)->next->value > (*list)->next->next->value)
 	{
-		ra(list);
-		ft_putendl_fd("ra", 1);
-		sa(list);
-		ft_putendl_fd("sa", 1);
-		rra(list);
-		ft_putendl_fd("rra", 1);
+		which_operation(cmds, list, NULL, RA);
+		// ra(list);
+		// ft_putendl_fd("ra", 1);
+		which_operation(cmds, list, NULL, SA);
+		// sa(list);
+		// ft_putendl_fd("sa", 1);
+		which_operation(cmds, list, NULL, RRA);
+		// rra(list);
+		// ft_putendl_fd("rra", 1);
 		if ((*list)->value > (*list)->next->value)
 		{
-			sa(list);
-			ft_putendl_fd("sa", 1);
+			which_operation(cmds, list, NULL, SA);
+			// sa(list);
+			// ft_putendl_fd("sa", 1);
 		}
 	}
 }
 
-void	sort_tiny_list_b(t_stack **list)
+void	sort_tiny_list_b(t_stack **list, t_stack **cmds)
 {
 	if (!list || ft_is_stack_decreasing_sorted(list))
 		return ;
 	if ((*list)->value < (*list)->next->value)
 	{
-		sb(list);
-		ft_putendl_fd("sb", 1);
+		which_operation(cmds, NULL, list, SB);
+		// sb(list);
+		// ft_putendl_fd("sb", 1);
 	}
 	if (!(*list)->next->next)
 		return ;
 	if ((*list)->next->value < (*list)->next->next->value)
 	{
-		rb(list);
-		ft_putendl_fd("rb", 1);
-		sb(list);
-		ft_putendl_fd("sb", 1);
-		rrb(list);
-		ft_putendl_fd("rrb", 1);
+		which_operation(cmds, NULL, list, RB);
+		// rb(list);
+		// ft_putendl_fd("rb", 1);
+		which_operation(cmds, NULL, list, SB);
+		// sb(list);
+		// ft_putendl_fd("sb", 1);
+		which_operation(cmds, NULL, list, RRB);
+		// rrb(list);
+		// ft_putendl_fd("rrb", 1);
 		if ((*list)->value < (*list)->next->value)
 		{
-			sb(list);
-			ft_putendl_fd("sb", 1);
+			which_operation(cmds, NULL, list, SB);
+			// sb(list);
+			// ft_putendl_fd("sb", 1);
 		}
 	}
 }
 
-void	toute_petite_liste(t_stack **list)
+void	toute_petite_liste(t_stack **list, t_stack **cmds)
 {
 	if (!list || ft_is_stack_sorted(list))
 		return ;
@@ -238,50 +253,51 @@ void	toute_petite_liste(t_stack **list)
 		{
 			if ((*list)->value > (*list)->next->value)
 				{
-					// printf("liste 2 elem\n");
-					sa(list);
-					ft_putendl_fd("sa", 1);
+					which_operation(cmds, list, NULL, SA);
+					// sa(list);
+					// ft_putendl_fd("sa", 1);
 				}
 			return ;
 		}
 	if ((*list)->value < (*list)->next->value)
 	{
-		// printf("cas 5\n");
-		rra(list);
-		ft_putendl_fd("rra", 1);
+		which_operation(cmds, list, NULL, RRA);
+		// rra(list);
+		// ft_putendl_fd("rra", 1);
 		if ((*list)->value > (*list)->next->value)
 		{
-			// printf("cas 4\n");			
-			sa(list);
-			ft_putendl_fd("sa", 1);
+			which_operation(cmds, list, NULL, SA);
+			// sa(list);
+			// ft_putendl_fd("sa", 1);
 		}
 	}
 	else if ((*list)->next->value < (*list)->next->next->value) // if b < c
 	{
 		if ((*list)->value < (*list)->next->next->value) // if a < c
 		{
-			// printf("cas 2\n");			
-			sa(list);
-			ft_putendl_fd("sa", 1);
+			which_operation(cmds, list, NULL, SA);
+			// sa(list);
+			// ft_putendl_fd("sa", 1);
 		}
 		else
 		{
-			// printf("cas 3\n");						
-			ra(list);
-			ft_putendl_fd("ra",  1);
+			which_operation(cmds, list, NULL, RA);
+			// ra(list);
+			// ft_putendl_fd("ra",  1);
 		}
 	}
 	else
 	{
-		// printf("cas 1\n");			
-		sa(list);
-		ft_putendl_fd("sa", 1);
-		rra(list);
-		ft_putendl_fd("rra", 1);
+		which_operation(cmds, list, NULL, SA);
+		// sa(list);
+		// ft_putendl_fd("sa", 1);
+		which_operation(cmds, list, NULL, RRA);
+		// rra(list);
+		// ft_putendl_fd("rra", 1);
 	}
 }
 
-void	toute_petite_liste_b(t_stack **list)
+void	toute_petite_liste_b(t_stack **list, t_stack **cmds)
 {
 	if (!list || ft_is_stack_decreasing_sorted(list))
 		return ;
@@ -289,39 +305,46 @@ void	toute_petite_liste_b(t_stack **list)
 	{
 		if ((*list)->value < (*list)->next->value)
 			{
-				sb(list);
-				ft_putendl_fd("sb", 1);
+				which_operation(cmds, NULL, list, SB);
+				// sb(list);
+				// ft_putendl_fd("sb", 1);
 			}
 		return ;
 	}
 	if ((*list)->value > (*list)->next->value)
 	{
-		rrb(list);
-		ft_putendl_fd("rrb", 1);
+		which_operation(cmds, NULL, list, RRB);
+		// rrb(list);
+		// ft_putendl_fd("rrb", 1);
 		if ((*list)->value < (*list)->next->value)
 		{
-			sb(list);
-			ft_putendl_fd("sb", 1);
+			which_operation(cmds, NULL, list, SB);
+			// sb(list);
+			// ft_putendl_fd("sb", 1);
 		}
 	}
 	else if ((*list)->next->value > (*list)->next->next->value)
 	{
 		if ((*list)->value > (*list)->next->next->value)
 		{
-			sb(list);
-			ft_putendl_fd("sb", 1);
+			which_operation(cmds, NULL, list, SB);
+			// sb(list);
+			// ft_putendl_fd("sb", 1);
 		}
 		else
 		{
-			rb(list);
-			ft_putendl_fd("rb",  1);
+			which_operation(cmds, NULL, list, RB);
+			// rb(list);
+			// ft_putendl_fd("rb",  1);
 		}
 	}
 	else
 	{
-		sb(list);
-		ft_putendl_fd("sb", 1);
-		rrb(list);
-		ft_putendl_fd("rrb", 1);
+		which_operation(cmds, NULL, list, SB);
+		// sb(list);
+		// ft_putendl_fd("sb", 1);
+		which_operation(cmds, NULL, list, RRB);
+		// rrb(list);
+		// ft_putendl_fd("rrb", 1);
 	}	
 }
