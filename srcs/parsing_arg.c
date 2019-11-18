@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/13 18:42:08 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:39:30 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,20 @@ void	parse_arg(t_stack **list, char *str)
 	{
 		if (!is_number((string[i])))
 		{
-			printf("%s - caractere non int\n", string[i]);
+			// printf("%s - caractere non int\n", string[i]);
 			delete_list(list);
 			ft_error();
 		}
 		if (check_min_max(ft_atoilong(string[i])) == 0)
 		{
-			printf("over/underflow\n");
+			// printf("over/underflow\n");
 			delete_list(list);
 			ft_error();
 		}
 		else
 			push_list(list, ft_atoi(string[i]));
+		free(string[i]);
 		i++;
 	}
+	free(string);
 }

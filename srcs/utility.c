@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/17 20:21:41 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:41:52 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ void	delete_list(t_stack	**list)
 	if (*list == NULL)
 		return ;
 	current = *list;
-	while(current != NULL)
+	while (current != NULL)
 	{
+		// printf("lalala%d\n", current->value);
 		next = current->next;
 		free(current);
 		current = next;
@@ -165,7 +166,7 @@ t_stack	*create_node(int data)
 	return (list);
 }
 
-t_stack	*create_list()
+t_stack	*create_list(void)
 {
 	t_stack	*list;
 	
