@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 18:15:54 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/17 20:34:29 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:30:07 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,52 @@ void	print_cmds(t_stack *cmds)
 	{
 		ft_putendl_fd(g_tab_ope[cmds->value], 1);
 		cmds = cmds->next;
+	}
+}
+void	optimization(t_stack **cmds)
+{
+	t_stack	*del;
+	t_stack *tmp;
+
+	tmp = *cmds;
+	while (tmp && tmp->next)
+	{
+		if ((tmp->value == SA && tmp->next->value == SB)
+			|| (tmp->value == SB && tmp->next->value == SA))
+		{
+			del = tmp->next;
+			tmp->value = SS;
+			dll_delete_node(&tmp, del);
+		}
+		else if ((tmp->value == RA && tmp->next->value == RB)
+				|| (tmp->value == RB && tmp->next->value == RA))
+		{
+			del = tmp->next;
+			tmp->value = RR;
+			dll_delete_node(&tmp, del);
+		}
+		else if ((tmp->value == RRA && tmp->next->value == RRB)
+				|| (tmp->value == RRB && tmp->next->value == RRA))
+		{
+			del = tmp->next;
+			tmp->value = RRR;
+			dll_delete_node(&tmp, del);
+		}
+		else if ((tmp->value == PA && tmp->next->value == PB)
+				|| (tmp->value == PB && tmp->next->value == PA)
+				|| (tmp->value == RA && tmp->next->value == RRA)
+				|| (tmp->value == RRA && tmp->next->value == RA)
+				|| (tmp->value == RB && tmp->next->value == RRB)
+				|| (tmp->value == RRB && tmp->next->value == RB))
+		{
+			del = tmp;
+			dll_delete_node(&tmp, del);
+			del = tmp;
+			dll_delete_node(&tmp, del);
+			if (tmp->prev)
+				tmp = tmp->prev;
+		}
+		else
+			tmp = tmp->next;
 	}
 }

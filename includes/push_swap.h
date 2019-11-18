@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/17 20:25:42 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 16:43:47 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			ft_is_stack_decreasing_sorted(t_stack  **b);
 t_stack		*create_list();
 t_stack		*create_node(int data);
 void		delete_list(t_stack	**list);
+void		dll_delete_node(t_stack **list, t_stack *del);
 void		add_end_list(t_stack **list, int data);
 
 /*
@@ -96,5 +97,6 @@ void		toute_petite_liste(t_stack **list, t_stack **cmds);
 void		toute_petite_liste_b(t_stack **list, t_stack **cmds);
 void    	which_operation(t_stack **cmds, t_stack **list_a, t_stack **list_b, int ope);
 void		print_cmds(t_stack *cmds);
+void		optimization(t_stack **cmds);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:49:28 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/17 20:33:44 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 18:21:16 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock, t_stack **cm
 		// size = get_list_length(*stock);
 		while (push_cnt > 0)
 		{
-			if ((*list)->value > (*stock)->value)
-			{
+			// if ((*list)->value > (*stock)->value)
+			// {
 				// printf("QS_a pa %d > %d\n", (*list)->value , (*stock)->value);
 				which_operation(cmds, list, stock, PA);
 				// pa(list, stock);
 				// ft_putendl_fd("pa", 1);
 				push_cnt--;
-			}
-			else
-			{
-				which_operation(cmds, list, stock, RA);
-				// ra(list);
-				// ft_putendl_fd("ra", 1);
-			}
+			// }
+			// else
+			// {
+			// 	which_operation(cmds, list, stock, RA);
+			// 	// ra(list);
+			// 	// ft_putendl_fd("ra", 1);
+			// }
 		}
 	}
 	// tmp = *list;
@@ -154,21 +154,21 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock, t_stack **c
 		
 		while (push_cnt > 0)
 		{
-			if ((*list)->value < (*stock)->value)
-			{
+			// if ((*list)->value < (*stock)->value)
+			// {
 				// printf("QS_b pb %d < %d\n", (*list)->value , (*stock)->value);
 				which_operation(cmds, stock, list, PB);
 				// pb(stock, list);
 				// ft_putendl_fd("pb", 1);
 				push_cnt--;
-			}
-			else
-			{
-				which_operation(cmds, stock, list, RB);
-				// rb(list);
-				// ft_putendl_fd("rb", 1);
-				// printf("QS_b mon cul choucroute\n");
-			} 
+			// }
+			// else
+			// {
+			// 	which_operation(cmds, stock, list, RB);
+			// 	// rb(list);
+			// 	// ft_putendl_fd("rb", 1);
+			// 	// printf("QS_b mon cul choucroute\n");
+			// } 
 		}
 	}
 	// tmp = *list;

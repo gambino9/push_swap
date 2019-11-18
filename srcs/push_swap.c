@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 21:26:44 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/17 20:34:20 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/18 16:45:45 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int     main(int argc, char *argv[])
     tmp = list;
     cmds = create_list();
     quicksort_ascending(size, &list, &list_b, &cmds);
+    optimization(&cmds);
     print_cmds(cmds);
     // tmp = list;
     // while (cmds)
