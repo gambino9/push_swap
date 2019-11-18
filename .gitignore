@@ -53,3 +53,8 @@ dkms.conf
 
 .vscode/
 a.out
+
+# Others 
+test
+push_swap
+checker
