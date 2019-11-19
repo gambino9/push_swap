@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 22:05:27 by lboukrou          #+#    #+#              #
-#    Updated: 2019/11/18 19:48:23 by lboukrou         ###   ########.fr        #
+#    Updated: 2019/11/19 19:39:41 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC_BOTH		=	error.c \
 					reverse_rotate.c \
 					rotate.c \
 					swap.c \
-					utility.c
+					utils_list.c \
+					utils.c
 
 OBJ_DIR			=	obj
 

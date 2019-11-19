@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/14 15:59:15 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/19 19:04:42 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int argc, char *argv[])
 	t_stack		*list_b;
 
 	i = argc;
-	list_a = create_list();
+	list_a = NULL;
 	if (argc <= 1)
 		return (0);
 	while (--i != 0)
@@ -33,13 +33,13 @@ int		main(int argc, char *argv[])
 		delete_list(&list_a);
 		ft_error();
 	}
-	list_b = create_list();
+	list_b = NULL;
 	parse_cmd(&tmp_a, &list_b);
 	list_a = tmp_a;
 	if (list_b == NULL && ft_is_stack_sorted(&tmp_a) == 1)
-		ft_putendl("OK\n");
+		ft_putendl("OK");
 	else
-		ft_putendl("KO\n");
+		ft_putendl("KO");
 	delete_list(&list_b);
 	delete_list(&list_a);
 	return (0);

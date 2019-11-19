@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:58:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/14 16:29:14 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/19 19:15:50 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ void	exec_cmd(t_stack **list, t_stack **list_b, char *cmd)
 void	parse_cmd(t_stack **a, t_stack **b)
 {
 	char		*line;
-	// t_stack		*tmp_a;
-	// t_stack		*tmp_b;
+	int			ret;
 
 	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	while ((ret = get_next_line(0, &line)) > 0)
 	{
 		if (!(check_cmd(line)))
 		{
@@ -67,18 +66,8 @@ void	parse_cmd(t_stack **a, t_stack **b)
 			ft_error();
 		}
 		exec_cmd(a, b, line);
-		// tmp_a = *a;
-		// tmp_b = *b;
-		// while (tmp_a != NULL)
-		// {
-		// 	printf("----%d\n", tmp_a->value);
-		// 	tmp_a = tmp_a->next;
-		// }
-		// printf("-------------------\n");
-		// while (tmp_b != NULL)
-		// {
-		// 	printf("****%d\n", tmp_b->value);
-		// 	tmp_b = tmp_b->next;
-		// }
+		free(line);
 	}
+	if (ret == -1)
+		ft_error();
 }

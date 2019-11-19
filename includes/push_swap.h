@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:53:15 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/18 16:43:47 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/19 19:27:41 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static char				*g_tab_ope[12] = {"no", "sa", "sb", "ss", "pa",
 */
 
 t_stack		*new_list(int data);
-t_stack		*get_node(t_stack *list, int index);
-int			get_index(t_stack *list, t_stack *node);
 void		push_list(t_stack **begin, int data);
 int			get_list_length(t_stack *list);
 int			ft_is_stack_sorted(t_stack  **a);

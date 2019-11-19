@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 17:29:46 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/01 21:24:25 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/19 19:05:39 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	ft_error(void)
 {
-	ft_putendl_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	exit(0);
 }
 
 void	ft_malloc_error(void)
 {
-	ft_putendl_fd("Erroc : cannot allocate memory\n", 2);
+	ft_putendl_fd("Erroc : cannot allocate memory", 2);
 	exit(0);
 }
