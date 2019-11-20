@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 12:21:22 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/19 19:04:42 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:07:26 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 
 int		main(int argc, char *argv[])
 {
-	int			i;
 	t_stack		*list_a;
 	t_stack		*tmp_a;
 	t_stack		*list_b;
 
-	i = argc;
 	list_a = NULL;
 	if (argc <= 1)
 		return (0);
-	while (--i != 0)
-		parse_arg(&list_a, argv[i]);
+	while (argc-- != 1)
+		parse_arg(&list_a, argv[argc]);
 	tmp_a = list_a;
 	if (!(without_duplicate(list_a)))
 	{

@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:59:47 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/10/28 19:20:58 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:02:56 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	rra(t_stack **a)
 	t_stack		*tmp_a;
 
 	if (!*a)
-	{
-		printf("a == NULL\n");
 		return ;
-	}
 	tmp_a = *a;
 	tmp = *a;
 	while (tmp->next && tmp->next->next)
@@ -53,7 +50,6 @@ void	rrb(t_stack **b)
 		return ;
 	tmp_b = *b;
 	tmp = *b;
-	
 	while (tmp->next && tmp->next->next)
 	{
 		tmp = tmp->next;

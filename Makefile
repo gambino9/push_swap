@@ -6,7 +6,7 @@
 #    By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/01 22:05:27 by lboukrou          #+#    #+#              #
-#    Updated: 2019/11/19 19:39:41 by lboukrou         ###   ########.fr        #
+#    Updated: 2019/11/20 20:07:17 by lboukrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,10 @@ SRC_DIR			=	srcs
 SRC_CHECKER		=	checker.c 
 SRC_PUSH_SWAP	=	push_swap.c \
 					quicksort.c \
+					sort_tiny_list.c \
 					median.c \
-					optimization.c
+					optimization.c \
+					optimization_utils.c
 SRC_BOTH		=	error.c \
 					parsing_arg.c \
 					parsing_cmds.c \

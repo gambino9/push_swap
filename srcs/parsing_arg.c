@@ -6,19 +6,17 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/19 19:06:11 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:28:07 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../includes/push_swap.h"
 
-long int		ft_atoilong(const char *nptr)
+long int	ft_atoilong(const char *nptr)
 {
-	size_t				i;
+	size_t		i;
 	long long	retour;
-	int					negatif;
+	int			negatif;
 
 	i = 0;
 	negatif = 1;
@@ -41,7 +39,7 @@ long int		ft_atoilong(const char *nptr)
 	return (retour * negatif);
 }
 
-int		check_min_max(long int n)
+int			check_min_max(long int n)
 {
 	if (n > INT_MAX || n < INT_MIN)
 		return (0);
@@ -49,7 +47,7 @@ int		check_min_max(long int n)
 		return (1);
 }
 
-int		is_number(char *str)
+int			is_number(char *str)
 {
 	while (*str)
 	{
@@ -60,10 +58,10 @@ int		is_number(char *str)
 	return (1);
 }
 
-int		without_duplicate(t_stack *list)
+int			without_duplicate(t_stack *list)
 {
-    t_stack *tmp;
-	t_stack *tmp2;
+	t_stack		*tmp;
+	t_stack		*tmp2;
 
 	tmp = list;
 	while (tmp != NULL && tmp->next != NULL)
@@ -81,11 +79,11 @@ int		without_duplicate(t_stack *list)
 	return (1);
 }
 
-void	parse_arg(t_stack **list, char *str)
+void		parse_arg(t_stack **list, char *str)
 {
 	char	**string;
 	int		i;
-	
+
 	i = 0;
 	string = ft_strsplit(str, ' ');
 	while (string[i] != NULL)

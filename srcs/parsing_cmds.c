@@ -6,21 +6,20 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:58:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/19 19:15:50 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:37:50 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "../includes/push_swap.h"
 
-int     check_cmd(char *buf)
+int		check_cmd(char *buf)
 {
-    if (!ft_strcmp(buf, "sa") || !ft_strcmp(buf, "sb") || !ft_strcmp(buf, "ss")
-        || !ft_strcmp(buf, "pa") || !ft_strcmp(buf, "pb")
-        || !ft_strcmp(buf, "ra") || !ft_strcmp(buf, "rb")
-        || !ft_strcmp(buf, "rr") || !ft_strcmp(buf, "rra")
+	if (!ft_strcmp(buf, "sa") || !ft_strcmp(buf, "sb") || !ft_strcmp(buf, "ss")
+		|| !ft_strcmp(buf, "pa") || !ft_strcmp(buf, "pb")
+		|| !ft_strcmp(buf, "ra") || !ft_strcmp(buf, "rb")
+		|| !ft_strcmp(buf, "rr") || !ft_strcmp(buf, "rra")
 		|| !ft_strcmp(buf, "rrb") || !ft_strcmp(buf, "rrr"))
-            return (1);
+		return (1);
 	else
 		return (0);
 }

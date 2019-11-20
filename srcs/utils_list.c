@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utility.c                                          :+:      :+:    :+:   */
+/*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 18:12:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/19 19:38:19 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 15:21:58 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 /*
-** Creates new doubly linked node 
+** Creates new doubly linked node
 */
 
 t_stack	*create_node(int data)
@@ -45,6 +44,9 @@ void	push_list(t_stack **begin, int data)
 	(*begin) = new_node;
 }
 
+/*
+** Function to insert a node at the beginging of the Doubly Linked List
+*/
 
 void	add_end_list(t_stack **list, int data)
 {
@@ -67,7 +69,7 @@ void	add_end_list(t_stack **list, int data)
 	new_node->prev = tmp;
 }
 
-void	delete_list(t_stack	**list)
+void	delete_list(t_stack **list)
 {
 	t_stack		*current;
 	t_stack		*next;
@@ -98,7 +100,6 @@ void	dll_delete_node(t_stack **list, t_stack *del)
 		del->next->prev = del->prev;
 	if (del->prev != NULL)
 		del->prev->next = del->next;
-	free (del);
+	free(del);
 	return ;
 }
-
