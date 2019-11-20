@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/20 15:28:07 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 20:52:35 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			check_min_max(long int n)
 
 int			is_number(char *str)
 {
+	if (str[0] == '-')
+		str++;
 	while (*str)
 	{
 		if (!(ft_isdigit(*str)))

@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:49:28 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/20 19:33:10 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/20 20:57:41 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	quicksort_ascending(int size, t_stack **list, t_stack **stock,
 {
 	int			push_cnt;
 
+	if (ft_is_stack_sorted(list))
+		return ;
 	if (size <= 3)
 	{
 		if (get_list_length(*list) < 3)
@@ -98,6 +100,8 @@ void	quicksort_descending(int size, t_stack **list, t_stack **stock,
 {
 	int		push_cnt;
 
+	if (ft_is_stack_decreasing_sorted(list))
+		return ;
 	if (size <= 3)
 	{
 		if (get_list_length(*list) < 3)
