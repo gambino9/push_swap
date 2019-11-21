@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 20:06:08 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/20 20:06:35 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/21 13:45:42 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	opti_push(t_stack **tmp)
 	dll_delete_node(tmp, del);
 	del = *tmp;
 	dll_delete_node(tmp, del);
-	if ((*tmp)->prev)
+	if (*tmp && (*tmp)->prev)
 		(*tmp) = (*tmp)->prev;
 }

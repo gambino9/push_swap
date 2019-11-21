@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:58:49 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/20 21:02:02 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/21 18:04:22 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ void	parse_cmd(t_stack **a, t_stack **b)
 		{
 			delete_list(a);
 			delete_list(b);
+			free(line);
 			ft_error();
 		}
 		exec_cmd(a, b, line);
 		free(line);
+	}
+	if (ret == -1)
+	{
+		free(line);
+		ft_error();
 	}
 }

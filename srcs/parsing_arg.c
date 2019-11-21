@@ -6,7 +6,7 @@
 /*   By: lboukrou <lboukrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 17:00:32 by lboukrou          #+#    #+#             */
-/*   Updated: 2019/11/20 20:52:35 by lboukrou         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:00:32 by lboukrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void		parse_arg(t_stack **list, char *str)
 	i = 0;
 	string = ft_strsplit(str, ' ');
 	while (string[i] != NULL)
+		i++;
+	while (--i >= 0)
 	{
 		if (!is_number((string[i])))
 		{
@@ -103,7 +105,6 @@ void		parse_arg(t_stack **list, char *str)
 		else
 			push_list(list, ft_atoi(string[i]));
 		free(string[i]);
-		i++;
 	}
 	free(string);
 }
